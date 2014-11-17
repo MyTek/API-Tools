@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+
+<head>
+
+<script language="javascript">
+<!--
+function updateArea() {
+
+// 'update_area' is the id of the element to update.
+var text = document.getElementById("input").value;
+var element = document.getElementById('update_area');
+var parent;
+
+//text = text.replace(/1/, "").replace(/2/, "")
+text = text.replace(/,"code"(.*?)","/g, "\,\"");
+text = text.replace(/&/g, "&amp;");
+text = text.replace(/{(.*?){(.*?){(.*?){/, "");
+text = text.replace(/:(null)/g, ":\"\"");
+text = text.replace(/\:([a-zA-z0-9-]+),/g, ":\"$1\"\,");
+text = text.replace(/\[("*)\]/g, "");
+text = text.replace(/&/g, "&amp;");
+
+text = text.replace(/\[(^\")\]/g, "");
+parent = text.match(/"([0-9]+)":{"(.*?)":{"(.*?)":"(.*?)"(.*?)}}/);
+text = text.replace(/"([0-9]+)":{"(.*?)":{"(.*?)":"(.*?)"(.*?)}}/g, "&lt;$2&gt;" + "&lt;$2$3&gt;" + "$4" + "&lt;/$2$3&gt;" + "$5" + "&lt;/$2&gt;}");
+text = text.replace(/[\[\]]/g, "xxxx");
+text = text.replace(/,"([a-zA-Z0-9\-_=+;:.,\\]+)":xxxx(.*?)xxxx/g, "&lt;$1&gt;$2" + "&lt;/$1&gt;");
+text = text.replace(/,"([a-zA-Z0-9\-_=+;:.,\\]+)":"(.*?)"/g, "&lt;$1&gt;$2" + "&lt;/$1&gt;");
+text = text.replace(/},/g, "");
+text = text.replace(/}(.*?)}}/g, "");
+
+
+element.innerHTML = ("&lt;?xml version=\"1.0\" encoding=\"utf-8\"?&gt;" + "&lt;" + parent[2] + "s&gt;"  + text + "&lt;/" + parent[2] + "s&gt;");
+
+
+
+
+}
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Put this div where you want the HTML to update -->
+<div id="update_area">This will be updated when you click the button</div>
+
+<form type="input">
+<input id="input">
+<input type="button" value="Click to Update" onclick='updateArea()'>
+</form>
+<body>
+</html>

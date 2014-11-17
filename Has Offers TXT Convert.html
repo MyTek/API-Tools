@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+
+<head>
+
+<script language="javascript">
+<!--
+function updateArea() {
+
+// 'update_area' is the id of the element to update.
+var text = document.getElementById("input").value;
+var element = document.getElementById('update_area');
+
+
+text = text.replace(/\,\,\"([0-9])([0-9])([0-9])\;/g, "\,\,\"$1$2$3\;\"");
+//text = text.replace(/1/, "").replace(/2/, "")
+text = text.replace(/\"\"/g, "\"").replace(/\"\"/g, "\"").replace(/\"\"/g, "\"");
+text = text.replace(/\;\;/g, "\;").replace(/\;\;/g, "\;").replace(/\;\;/g, "\;");
+text = text.replace(/\,\,/g, "\,").replace(/\,\,/g, "\,").replace(/\,\,/g, "\,");
+text = text.replace(/\,\,/g, "\,").replace(/\,,/g, "\,").replace(/\,,/g, "\,").replace(/\,,/g, "\,").replace(/\,,/g, "\,");
+text = text.replace(/\, \,/g, "\,");
+text = text.replace(/", "([0-9]*)\;/g, "\"<br/>\"$1;");
+text = text.replace(/([0-9])([0-9])\;\"/g, "$1$2\"\;");
+text = text.replace(/"([0-9])\;\"/g, "\"$1\"\;");
+text = text.replace(/"([0-9]*)\;/g, "\"$1\"\;");
+text = text.replace(/\"/g, "");
+
+
+element.innerHTML = (text);
+}
+//-->
+</script>
+
+</head>
+
+<body>
+
+<!-- Put this div where you want the HTML to update -->
+<div id="update_area">This will be updated when you click the button</div>
+
+
+<form type="input">
+<input id="input">
+<input type="button" value="Click to Update" onclick='updateArea()'>
+</form>
+<body>
+</html>

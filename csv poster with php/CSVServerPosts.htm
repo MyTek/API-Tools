@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.min.js"></script>
+		<script type="text/javascript" src="table2CSV.js" ></script> 
+		<script type="text/javascript" src="csv2table.js?v=1"></script>
+		<script type="text/javascript" language="javascript">
+$(function(){
+$("#conversions").val('');
+$("#uploadbutton").val('');
+if ( ($.browser.mozilla) && ($.browser.version >= 13) ){
+$("#browse").show()
+};
+$("#uploadbutton").change(function() {
+    var reader = new FileReader();
+    reader.onloadend = function() {
+        $("#conversions").val(reader.result);
+    }
+    reader.readAsText(this.files[0]);
+});
+$('#button').click(function(){
+	csvarray = $.csvIn.toArray($("#conversions").val());
+	var tbody = $('#results tbody');
+	var answer = confirm("Are you sure? (Cake is not responsible for information posted to your system using this utility)");
+	if(answer){
+	if (tbody.length == 0)
+		tbody = $('#results').append('<table width="100%" border="1" cellpadding="2" cellspacing="1"><thead><tr><th>Status</th><th>Email</th></tr></thead><tbody></tbody></table>').find("tbody");
+	for (var index = 0; index < csvarray.length; index++){
+		var emailadd = 'No Email.';
+		var campaignid;
+		var queryparams = {};
+		for(var query = 0; query < csvarray[index].length;query++){
+			if(csvarray[0][query] == "email_address"){
+				emailadd = csvarray[index][query];
+			};
+			if(csvarray[0][query] == "ckm_campaign_id"){
+				campaignid = csvarray[index][query];
+			};
+			if(csvarray[0][query] == "url"){
+				csvarray[index][query].replace(/\./g, ",");
+			};
+			if(!queryparams[index-1]){
+				queryparams[index-1] = csvarray[0][query] + "=" + encodeURIComponent(csvarray[index][query]);
+			}
+			else{
+			queryparams[index-1] += "&" + csvarray[0][query] + "=" + encodeURIComponent(csvarray[index][query]);
+			};
+		};
+		if(!campaignid){
+		tbody.append("<tr><td>ckm_campaign_id is a required field</td><td></td><td></td><td>" + emailadd + "</td></tr>");
+		continue;
+		};
+		if( index ){
+	$.ajax({
+		type: 'POST',
+		url: $("#posturl").val().replace(/\?/g, ""),
+		data: queryparams[index-1],
+		dataType: 'json',
+		async: false,
+		success: function (data) {
+		var xmlDoc = '\<\?' + data.contents.split('\<\?')[1];
+		xmlDoc = $.parseXML( xmlDoc )
+		var status;
+		if($(xmlDoc).find("msg").text() != "success"){
+			status = $(xmlDoc).find("error").text();
+			}
+		else{
+			status = $(xmlDoc).find("msg").text();
+			}
+		tbody.append("<tr><td>" + status + "</td><td>" + emailadd + "</td></tr>");
+			}
+		});
+		};
+	}
+	$("#export").show();
+	alert("Done");
+	};
+});
+$('#export').click(function() {
+  var results = $('#results').table2CSV({delivery:'value'});  
+  window.open('data:text/csv,' + encodeURIComponent(results));
+});
+$('#examplebutton').click(function() {
+  var example = $('#example').text();  
+  window.open('data:text/csv,' + encodeURIComponent(example));
+});
+});
+		</script>
+	</head>
+	<body width="100%">
+	Insert Post URL (no '?' needed)
+	</br>
+	</br>
+	<input id="posturl" type="text" size="200"/>
+	<div id="browse" style="display:none;">
+	Please specify a CSV or text file in the form of a CSV:</br>
+	</br>
+<input type="file" id="uploadbutton" name="datafile" size="40" autocomplete="off"></br></br>
+</div>
+	<div style="display:block;">
+		<div>CSV Text</div>
+		<div>This will post leads using the CSV column headers as parameters and the matching rows as values for those parameters.  One post per row starting on the second line.  Please make sure to include ckm_campaign_id and ckm_key for the leads to post correctly.  Please copy the raw text from your CSV and paste it in here.  If you have Firefox Version 13 or higher, you will have the option of uploading the file directly.</div>
+		<div id='example' style="display:none">ckm_campaign_id,ckm_key,ckm_subid,first_name,last_name,address1,city,state,postal_code,email_address,phone,ip_address,country,opt_in,company,job_title,number_of_employees,lead_create_date,asset_title,Asset_URL,call_center
+5622,jTZaSVhoRikiqT3LeKSQ,subid_1,Awesome,Bill,from,dawsonville,CA,92663,Bill@gmail.com,5555555555,192.168.1.1,US,YES,Broke,NoJoke,1,1/1/2012,Something,http://www.google.com,NO</div>
+		<input id='examplebutton' type='button' value="Example">
+		</br>
+		<textarea id="conversions" rows="20" cols="100" value=""></textarea>
+		<input id="button" type="button" value="Submit Leads" />
+	</div>
+	<div id="results" style="float:left;width:100%;margin-top:20px;">
+	<div style="padding-bottom:5px"><input id='export' style="display:none;" type='button' value="Export"></div>
+	</div>
+	</body>
+</html>

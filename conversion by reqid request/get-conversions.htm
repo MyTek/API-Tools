@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.min.js"></script>
+		<script type="text/javascript" language="javascript">
+$(function(){
+	$("#data").val('');
+	$("#uploadbutton").val('');
+	if ( ($.browser.mozilla) && ($.browser.version >= 13) ){
+	$("#browse").show()
+	};
+	$("#uploadbutton").change(function() {
+		var reader = new FileReader();
+		reader.onloadend = function() {
+			$("#data").val(reader.result);
+		}
+		reader.readAsText(this.files[0]);
+	});
+	
+	$('#button').click(function(){
+
+		dataarray = $("#data").val().replace(/\n/g, ",");
+		
+		$.ajax({
+		type: 'POST',
+		url: 'get-conversions.php',
+		data: 'days=' + $('#days').val() + '&email=' + $('#email').val() + '&data=' + dataarray,
+		dataType: 'json',
+		async: false,
+		error: function () {
+			alert("Data NOT Received");
+			},
+		success: function () {
+			alert("Data Received.  You should receive an email shortly.");
+			}
+		});
+	});
+});
+		</script>
+	</head>
+	<body width="100%" style="padding:40px;">
+	<table>
+		<tbody>
+			<tr>
+				<td>	
+					Past days to reference:
+				</td>
+				<td>
+					<input id="days" type="text" size="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Email Address:
+				</td>
+				<td>
+					<input id="email" type="text" size="50"/>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</br>
+	<div id="browse" style="display:none;">
+		Please specify a CSV or text file (One column, line-separated): <input type="file" id="uploadbutton" name="datafile" size="40" autocomplete="off">
+		</br>
+		</br>
+	</div>
+	<div style="display:block;">
+		<div>Text (One column, line-separated)</div>
+		<textarea id="data" rows="20" cols="100" value=""></textarea>
+		<br/>
+		<br/>
+		<input id="button" type="button" value="Submit" />
+	</div>
+	</body>
+</html>

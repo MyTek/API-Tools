@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.min.js"></script>
+		<script type="text/javascript" src="table2CSV.js" > </script> 
+		<script type="text/javascript" src="csv2table.js"></script>
+		<script type="text/javascript" language="javascript">
+$(function(){
+$("#uploadbutton").val('');
+$("#conversions").val('');
+if ( ($.browser.mozilla) && ($.browser.version >= 13) ){
+$("#browse").show()
+};
+var login = "false";
+var user = "()";
+$('#login').change(function(){
+	$.ajax({
+		type: 'GET',
+		url: '/api/1/auth.asmx/Login?' + "username=" + encodeURIComponent($("#email").val()) + "&password=" + encodeURIComponent($("#password").val()) + "&ip_address=",
+		dataType: 'xml',
+		success: function (data) {
+			login = $(data).find("success").text();
+			user = "(" + $(data).find("contact_id").text() + ")" + $(data).find("contact_first_name").text() + " " + $(data).find("contact_last_name").text() + " - ";
+			if(login == "true"){
+				$('#loginstatus').html("Good!").css('color', 'green');
+			}
+			else{
+				$('#loginstatus').html("Please enter valid login credentials").css('color', 'red');
+			}	
+		}
+	});
+}).each(function(){
+	if ($("#email").val().length > 0)
+		$(this).change();
+});
+$("#uploadbutton").change(function() {
+    var reader = new FileReader();
+    reader.onloadend = function() {
+        $("#conversions").val(reader.result);
+    }
+    reader.readAsText(this.files[0]);
+});
+var apigood = "nope";
+var badapi = function(){
+	$('#apistatus').html("Please enter a valid API Key").css('color', 'red');
+	apigood = "nope";
+};
+$('#api').change(function(){
+	$.ajax({
+		type: 'POST',
+		url: '/api/1/get.asmx/Currencies',
+		contentType: 'application/json',
+		dataType: 'json',
+		data: '{"api_key":"' + $(this).val() + '"}',
+		success: function (data) {
+			if (data.d.success) {
+				$('#apistatus').html("Good!").css('color', 'green');
+				apigood = "okay";
+			} else
+				badapi();
+		},
+		error: badapi
+	});
+}).each(function(){
+	if ($(this).val().length > 0)
+		$(this).change();
+});
+$('#button').click(function(){
+csvarray = $.csvIn.toArray($("#conversions").val());
+if(csvarray[0][0] == "Request ID" && csvarray[0][1] == "Offer ID" && csvarray[0][2] == "Add to Existing" && csvarray[0][3] == "Paid" && csvarray[0][4] == "Received" && csvarray[0][5] == "Mark as Returned" && csvarray[0][6] == "Notes" && csvarray[0][7] == "Billing Option"){
+		if(login == "true" && user != "()"){
+		if(apigood == "okay"){
+			var answer = confirm("Are you sure? (Cake is not responsible for changes done to your system using this utility)");
+			if(answer){
+			var tbody = $('#results tbody');
+			if (tbody.length == 0)
+				tbody = $('#results').append('<table width="100%" border="1" cellpadding="2" cellspacing="1"><thead><tr><th>' + csvarray[0][0] + "</th><th>" + csvarray[0][1] + "</th><th>" + csvarray[0][2] + "</th><th>" + csvarray[0][3] + "</th><th>" + csvarray[0][4] + "</th><th>" + csvarray[0][5] + "</th><th>" + csvarray[0][6] + "</th><th>" + csvarray[0][7] + "</th><th>Status</th></tr></thead><tbody></tbody></table>").find("tbody");
+			for (var index = 1; index < csvarray.length; index++)
+			{
+				var found = "noooope";
+				var payout;
+				var received;
+				csvarray[index][3] = csvarray[index][3].replace(/[^0-9.]/g, '');
+				csvarray[index][4] = csvarray[index][4].replace(/[^0-9.]/g, '');
+				if(csvarray[index][3] == '' || csvarray[index][3] == 0){
+					csvarray[index][3] = 0;
+					payout = 0
+					}
+				else{
+					var payout = csvarray[index][3];
+					}
+				if(csvarray[index][4] == '' || csvarray[index][4] == 0){
+					csvarray[index][4] = 0
+					received = 0
+					}
+				else{
+					var received = csvarray[index][4];
+					}
+				$.ajax({
+					type: 'GET',
+					url: "/api/1/track.asmx/UpdateConversionPrice?api_key=" + $('#api').val() + "&request_id=" + csvarray[index][0] + "&offer_id=" + csvarray[index][1] + "&add_to_existing=" + csvarray[index][2] + "&amount=" + payout + "&mark_as_returned=" + csvarray[index][5] + "&note_to_append=" + user + csvarray[index][6] + "&billing_option=" + csvarray[index][7],
+					dataType: 'xml',
+					async: false,
+					success: function (data) {
+						$.ajax({
+							type: 'GET',
+							url: "/api/1/track.asmx/UpdateConversionRevenue?api_key=" + $('#api').val() + "&request_id=" + csvarray[index][0] + "&offer_id=" + csvarray[index][1] + "&add_to_existing=" + csvarray[index][2] + "&amount=" + received + "&mark_as_returned=" + csvarray[index][5] + "&note_to_append=" + user + csvarray[index][6],
+							dataType: 'xml',
+							async: false,
+							success: function (data) {
+								found = "yaaaaarp";
+								var xmlroot = $(data).children();
+								tbody.append("<tr><td>" + csvarray[index][0] + "</td><td>" + csvarray[index][1] + "</td><td>" + csvarray[index][2] + "</td><td>" + csvarray[index][3] + "</td><td>" + csvarray[index][4] + "</td><td>" + csvarray[index][5] + "</td><td>" + csvarray[index][6] + "</td><td>" + csvarray[index][7] + "</td><td>Success</td></tr>");
+							},
+							error: function(){
+								tbody.append("<tr><td>" + csvarray[index][0] + "</td><td>" + csvarray[index][1] + "</td><td>" + csvarray[index][2] + "</td><td>" + csvarray[index][3] + "</td><td>" + csvarray[index][4] + "</td><td>" + csvarray[index][5] + "</td><td>" + csvarray[index][6] + "</td><td>" + csvarray[index][7] + "</td><td>Fail</td></tr>");
+								}
+							});
+					},
+					error: function(){
+							tbody.append("<tr><td>" + csvarray[index][0] + "</td><td>" + csvarray[index][1] + "</td><td>" + csvarray[index][2] + "</td><td>" + csvarray[index][3] + "</td><td>" + csvarray[index][4] + "</td><td>" + csvarray[index][5] + "</td><td>" + csvarray[index][6] + "</td><td>" + csvarray[index][7] + "</td><td>Fail</td></tr>");
+							}
+					
+				});
+				if(found == "noooope")
+					alert("Incorrect data on line #" + index);
+			}
+			$("#export").show();
+			alert("Done");
+			};
+		} else {
+			alert("Please enter a valid API Key");
+		}
+		}	else {
+			alert("Invalid login credentials");
+	}
+} else {
+	alert('Data is in incorrect format.  Columns should be in format "Request ID,Offer ID,Add to Existing,Paid,Received,Mark as Returned,Notes,Billing Option"');
+}
+});
+$('#export').click(function() {  
+  var results = $('#results').table2CSV({delivery:'value'});  
+  window.open('data:text/csv,' + encodeURIComponent(results));
+});
+$('#examplebutton').click(function() {
+  var example = $('#example').text();  
+  window.open('data:text/csv,' + encodeURIComponent(example));
+});
+});
+		</script>
+	</head>
+	<body width="100%" bgcolor="aqua">
+	<div id="login" style="float:top;">
+<div style="float:left;">
+<font style="float:left;">Email Address</font>
+<input type="text" id="email" style="float:left;">
+</div>
+<div style="float:left;">
+<font style="float:left;">Password</font>
+<input type="password" id="password">
+</div>
+<div id="loginstatus" style="float:left;">
+<font color="blue" style="float:left;">Please enter valid login credentials</font>
+</div>
+</div>
+</br></br>
+	<div style="display:block;">
+	<div id="browse" style="display:none;">
+	Please specify a CSV or text file in the form of a CSV(or just paste the CSV text below):</br>
+	<input type="file" id="uploadbutton" name="datafile" size="40"></br></br>
+	</div>
+	<div id='example' style="display:none">Request ID,Offer ID,Add to Existing,Paid,Received,Mark as Returned,Notes,Billing Option
+3293533,626,FALSE,0,0,FALSE,Good,next_generated_bill</div>
+	<input id='examplebutton' type='button' value="Example">
+		</br>
+		</br>
+		<div>CSV Text</div>
+		<textarea id="conversions" rows="20" cols="100"></textarea>
+		<div>API Key</div>
+		<input id="api" type="text" style="float:left;"/><div id="apistatus"><font color="blue">Please enter a valid API Key</font></div>
+		</br>
+		<input id="button" type="button" value="Submit Updates" />
+	</div>
+	<div id="results" style="float:left;width:100%;margin-top:20px;">
+	<div style="padding-bottom:5px"><input id='export' style="display:none;" type='button' value="Export"></div>
+	</div>
+	</body>
+</html>

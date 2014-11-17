@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.min.js"></script>
+		<script type="text/javascript" src="table2CSV.js" ></script> 
+		<script type="text/javascript" src="csv2table.js?v=1"></script>
+		<script type="text/javascript" language="javascript">
+$(function(){
+var dataexport='<?xml version="1.0" encoding="UTF-8"?><creative_export_response xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://cakemarketing.com/api/3/">';
+$("#conversions").val('');
+$("#uploadbutton").val('');
+$("#posturl").val('');
+if ( ($.browser.mozilla) && ($.browser.version >= 13) ){
+$("#browse").show()
+};
+$("#uploadbutton").change(function() {
+    var reader = new FileReader();
+    reader.onloadend = function() {
+        $("#conversions").val(reader.result);
+    }
+    reader.readAsText(this.files[0]);
+});
+$('#button').click(function(){
+	csvarray = $.csvIn.toArray($("#conversions").val());
+	var tbody = $('#results tbody');
+	var answer = confirm("Are you sure? (Cake is not responsible for information posted to your system using this utility)");
+	if(answer){
+	for (var index = 0; index < csvarray.length; index++){
+		var emailadd;
+		var campaignid;
+		var queryparams = {};
+	$.ajax({
+		type: 'GET',
+		url: csvarray[index],
+		dataType: 'xml',
+		async: false,
+		success: function (data) {
+			//IE
+			if (window.ActiveXObject){
+				dataexport += data.xml;
+			}
+			// code for Mozilla, Firefox, Opera, etc.
+			else{
+				dataexport += (new XMLSerializer()).serializeToString(data);
+			}
+		}
+			//dataexport += data;
+			//tbody += data;
+			//alert(data);
+		});
+		};
+	}
+	$("#export").show();
+	alert("Done");
+	});
+$('#export').click(function() {
+  //var results = $('#results').table2CSV({delivery:'value'});  
+  window.open('data:text/plain,' + encodeURIComponent(dataexport));
+});
+$('#examplebutton').click(function() {
+  var example = $('#example').text();  
+  window.open('data:text/csv,' + encodeURIComponent(example));
+});
+});
+		</script>
+	</head>
+	<body width="100%">
+	<div id="browse" style="display:none;">
+	Please specify a CSV or text file in the form of a CSV:</br>
+	</br>
+<input type="file" id="uploadbutton" name="datafile" size="40" autocomplete="off"></br></br>
+</div>
+	<div style="display:block;">
+		<div>CSV Text</div>
+		<div>This is for posting multiple API calls and retrieving the responses and giving one response for several calls. This will post each line and then merge the responses into one.  This is for calls that need to be split up for time out reason mainly.</div>
+		<div id='example' style="display:none">http://demo.com/api/3/export.asmx/Offers?api_key=4o8TDbDcK9A&offer_id=601&offer_name=&advertiser_id=0&vertical_id=0&offer_type_id=0&media_type_id=0&offer_status_id=0&tag_id=0&start_at_row=0&row_limit=0&sort_field=offer_id&sort_descending=false
+http://demo.com/api/3/export.asmx/Offers?api_key=4o8TDbDcK9A&offer_id=936&offer_name=&advertiser_id=0&vertical_id=0&offer_type_id=0&media_type_id=0&offer_status_id=0&tag_id=0&start_at_row=0&row_limit=0&sort_field=offer_id&sort_descending=false</div>
+		<input id='examplebutton' type='button' value="Example">
+		</br>
+		<textarea id="conversions" rows="20" cols="100" value=""></textarea>
+		<input id="button" type="button" value="Submit Leads" />
+	</div>
+	<div id="results" style="float:left;width:100%;margin-top:20px;">
+	<div style="padding-bottom:5px"><input id='export' style="display:none;" type='button' value="Export"></div>
+	</div>
+	</body>
+</html>

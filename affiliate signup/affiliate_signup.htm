@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UK2 Group Affiliate Signup</title>
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	background-color: #666;
+	font-family: Arial;
+	font-size: 12px;
+}
+#container {
+	width: 890px;
+	margin: 0 auto;
+	text-align: left;
+	background-color: #fff;
+	background-repeat: no-repeat;
+	padding: 111px 25px 25px;
+}
+
+h1 {
+	font-size: 26px;
+	margin: 15px 0;
+}
+h2 {
+	font-size: 22px;
+	margin: 15px 0;
+}
+.tin {
+	margin-left: 15px;
+}
+span.r {
+	color: Red;
+}
+#captcha {
+	margin: 15px 0;
+}
+</style>  
+<script src="js/jquery-1.7-min.js" type="text/javascript"></script>
+<script src="js/validation.js" type="text/javascript"></script>
+
+
+</head>
+<body>
+<div id="container">
+<div id="signup_form">
+<!--Header End-->
+<h1>Affiliate Signup</h1>
+<h2>Company Information</h2>
+<!--Featured End-->
+<div id="content">
+	<div id="content_form">
+		<form name="form" action="" id="form">
+		<input name="vat_tax_required" type="hidden" value="FALSE" id="vat_tax_required"/>
+		<input name="swift_iban" type="hidden" value="" id="swift_iban"/>
+		<input name="contact_middle_name" type="hidden" value="" id="contact_middle_name"/>
+		<input name="referral_notes" type="hidden" value="" id="referral_notes"/>
+        <input name="terms_and_conditions_agreed" type="hidden" value="TRUE" id="terms_and_conditions_agreed"/>
+		<input name="affiliate_tier_id" type="hidden" value="1" id="affiliate_tier_id"/>
+		<input name="hide_offers" type="hidden" value="FALSE" id="hide_offers"/>
+        <input name="media_type_ids" type="hidden" value="0" id="media_type_ids"/>
+        <input name="media_type" type="hidden" value="0" id="media_type"/>
+		<input name="payment_fee" type="hidden" value="0.00" id="payment_fee"/>
+		<input name="payment_min_threshold" type="hidden" value="0.00" id="payment_min_threshold"/>
+		<input name="payment_setting_id" type="hidden" value="1" id="payment_setting_id"/>
+		<input name="billing_cycle_id" type="hidden" value="1" id="billing_cycle_id"/>
+		<input name="contact_timezone" type="hidden" value="PST" id="contact_timezone"/>
+		<input name="contact_language_id" type="hidden" value="1" id="contact_language_id"/>
+		<input name="price_format" type="hidden" value="0" id="price_format"/>
+		<input name="vertical_category_ids" type="hidden" value="" id="vertical_category_ids"/>
+		<input name="country_codes" type="hidden" value="" id="country_codes"/>
+		<input name="tag_ids" type="hidden" value="" id="tag_ids"/>
+
+			
+			
+			<table class="tin">
+			<tr>
+			<td style="width:120px;">
+				<label>Company Name</label>
+			</td>
+			<td>
+                <input name="affiliate_name" type="text" id="affiliate_name" style="width:170px;"/>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<label>Address</label> <span class="r">*</span>
+			</td>
+			<td>
+				<input name="address_street" type="text" value="" id="address_street" style="width:170px;"/>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<label> </label>
+			</td>
+			<td>
+				<input name="address_street2" type="text" value="" id="address_street2" style="width:170px;"/>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<label>City</label> <span class="r">*</span>
+			</td>
+			<td>
+				<input name="address_city" type="text" value="" id="address_city" style="width:170px;"/>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<label>State</label> <span class="r">*</span>
+			</td>
+			<td>
+			<select name="address_state" id="address_state" style="width:170px;">
+					<option value="NONE">None</option>
+					<option value="AK">Alaska</option>
+					<option value="AL">Alabama</option>
+					<option value="AR">Arkansas</option>
+					<option value="AZ">Arizona</option>
+					<option value="CA">California</option>
+					<option value="CO">Colorado</option>
+					<option value="CT">Connecticut</option>
+					<option value="DC">District of Columbia</option>
+					<option value="DE">Delaware</option>
+					<option value="FL">Florida</option>
+					<option value="GA">Georgia</option>
+					<option value="HI">Hawaii</option>
+					<option value="IA">Iowa</option>
+					<option value="ID">Idaho</option>
+					<option value="IL">Illinois</option>
+					<option value="IN">Indiana</option>
+					<option value="KS">Kansas</option>
+					<option value="KY">Kentucky</option>
+					<option value="LA">Louisiana</option>
+					<option value="MA">Massachusetts</option>
+					<option value="MD">Maryland</option>
+					<option value="ME">Maine</option>
+					<option value="MI">Michigan</option>
+					<option value="MN">Minnesota</option>
+					<option value="MO">Missouri</option>
+					<option value="MS">Mississippi</option>
+					<option value="MT">Montana</option>
+					<option value="NC">North Carolina</option>
+					<option value="ND">North Dakota</option>
+					<option value="NE">Nebraska</option>
+					<option value="NH">New Hampshire</option>
+					<option value="NJ">New Jersey</option>
+					<option value="NM">New Mexico</option>
+					<option value="NV">Nevada</option>
+					<option value="NY">New York</option>
+					<option value="OH">Ohio</option>
+					<option value="OK">Oklahoma</option>
+					<option value="OR">Oregon</option>
+					<option value="PA">Pennsylvania</option>
+					<option value="RI">Rhode Island</option>
+					<option value="SC">South Carolina</option>
+					<option value="SD">South Dakota</option>
+					<option value="TN">Tennessee</option>
+					<option value="TX">Texas</option>
+					<option value="UT">Utah</option>
+					<option value="VA">Virginia</option>
+					<option value="VT">Vermont</option>
+					<option value="WA">Washington</option>
+					<option value="WI">Wisconsin</option>
+					<option value="WV">West Virginia</option>
+					<option value="WY">Wyoming</option>
+				</select>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<label>Zip Code</label> <span class="r">*</span>
+			</td>
+			<td>
+				<input name="address_zip_code" type="text" value="" id="address_zip_code" style="width:170px;"/>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<label>Country</label> <span class="r">*</span>
+			</td>
+			<td>
+			<select name="address_country" id="address_country" style="width:170px;">
+					<option value="AD">Andorra</option>
+					<option value="AE">United Arab Emirates</option>
+					<option value="AF">Afghanistan</option>
+					<option value="AG">Antigua and Barbuda</option>
+					<option value="AI">Anguilla</option>
+					<option value="AL">Albania</option>
+					<option value="AM">Armenia</option>
+					<option value="AN">Netherlands Antilles</option>
+					<option value="AO">Angola</option>
+					<option value="AP">Asia/Pacific Region</option>
+					<option value="AQ">Antarctica</option>
+					<option value="AR">Argentina</option>
+					<option value="AS">American Samoa</option>
+					<option value="AT">Austria</option>
+					<option value="AU">Australia</option>
+					<option value="AW">Aruba</option>
+					<option value="AX">Aland Islands</option>
+					<option value="AZ">Azerbaijan</option>
+					<option value="BA">Bosnia and Herzegovina</option>
+					<option value="BB">Barbados</option>
+					<option value="BD">Bangladesh</option>
+					<option value="BE">Belgium</option>
+					<option value="BF">Burkina Faso</option>
+					<option value="BG">Bulgaria</option>
+					<option value="BH">Bahrain</option>
+					<option value="BI">Burundi</option>
+					<option value="BJ">Benin</option>
+					<option value="BL">saint barthelemy</option>
+					<option value="BM">Bermuda</option>
+					<option value="BN">Brunei Darussalam</option>
+					<option value="BO">Bolivia</option>
+					<option value="BQ">bonaire/sint eustatius/saba</option>
+					<option value="BR">Brazil</option>
+					<option value="BS">Bahamas</option>
+					<option value="BT">Bhutan</option>
+					<option value="BV">Bouvet Island</option>
+					<option value="BW">Botswana</option>
+					<option value="BY">Belarus</option>
+					<option value="BZ">Belize</option>
+					<option value="CA">Canada</option>
+					<option value="CC">cocos (keeling) islands</option>
+					<option value="CD">Congo, The Democratic Republic of the</option>
+					<option value="CF">Central African Republic</option>
+					<option value="CG">Congo</option>
+					<option value="CH">Switzerland</option>
+					<option value="CI">Cote D&#39;Ivoire</option>
+					<option value="CK">Cook Islands</option>
+					<option value="CL">Chile</option>
+					<option value="CM">Cameroon</option>
+					<option value="CN">China</option>
+					<option value="CO">Colombia</option>
+					<option value="CR">Costa Rica</option>
+					<option value="CU">Cuba</option>
+					<option value="CV">Cape Verde</option>
+					<option value="CW">curacao</option>
+					<option value="CX">christmas island</option>
+					<option value="CY">Cyprus</option>
+					<option value="CZ">Czech Republic</option>
+					<option value="DE">Germany</option>
+					<option value="DJ">Djibouti</option>
+					<option value="DK">Denmark</option>
+					<option value="DM">Dominica</option>
+					<option value="DO">Dominican Republic</option>
+					<option value="DZ">Algeria</option>
+					<option value="EC">Ecuador</option>
+					<option value="EE">Estonia</option>
+					<option value="EG">Egypt</option>
+					<option value="EH">western sahara</option>
+					<option value="ER">Eritrea</option>
+					<option value="ES">Spain</option>
+					<option value="ET">Ethiopia</option>
+					<option value="EU">Europe</option>
+					<option value="FI">Finland</option>
+					<option value="FJ">Fiji</option>
+					<option value="FK">Falkland Islands (Malvinas)</option>
+					<option value="FM">Micronesia, Federated States of</option>
+					<option value="FO">Faroe Islands</option>
+					<option value="FR">France</option>
+					<option value="GA">Gabon</option>
+					<option value="GB">United Kingdom</option>
+					<option value="GD">Grenada</option>
+					<option value="GE">Georgia</option>
+					<option value="GF">French Guiana</option>
+					<option value="GG">Guernsey</option>
+					<option value="GH">Ghana</option>
+					<option value="GI">Gibraltar</option>
+					<option value="GL">Greenland</option>
+					<option value="GM">Gambia</option>
+					<option value="GN">Guinea</option>
+					<option value="GP">Guadeloupe</option>
+					<option value="GQ">Equatorial Guinea</option>
+					<option value="GR">Greece</option>
+					<option value="GS">south georgia / south sandwich isl</option>
+					<option value="GT">Guatemala</option>
+					<option value="GU">Guam</option>
+					<option value="GW">Guinea-Bissau</option>
+					<option value="GY">Guyana</option>
+					<option value="HK">Hong Kong</option>
+					<option value="HM">heard and mc donald islands</option>
+					<option value="HN">Honduras</option>
+					<option value="HR">Croatia</option>
+					<option value="HT">Haiti</option>
+					<option value="HU">Hungary</option>
+					<option value="ID">Indonesia</option>
+					<option value="IE">Ireland</option>
+					<option value="IL">Israel</option>
+					<option value="IM">Isle of Man</option>
+					<option value="IN">India</option>
+					<option value="IO">British Indian Ocean Territory</option>
+					<option value="IQ">Iraq</option>
+					<option value="IR">Iran, Islamic Republic of</option>
+					<option value="IS">Iceland</option>
+					<option value="IT">Italy</option>
+					<option value="JE">Jersey</option>
+					<option value="JM">Jamaica</option>
+					<option value="JO">Jordan</option>
+					<option value="JP">Japan</option>
+					<option value="KE">Kenya</option>
+					<option value="KG">Kyrgyzstan</option>
+					<option value="KH">Cambodia</option>
+					<option value="KI">Kiribati</option>
+					<option value="KM">Comoros</option>
+					<option value="KN">Saint Kitts and Nevis</option>
+					<option value="KP">Korea, Democratic People&#39;s Republic of</option>
+					<option value="KR">Korea, Republic of</option>
+					<option value="KW">Kuwait</option>
+					<option value="KY">Cayman Islands</option>
+					<option value="KZ">Kazakstan</option>
+					<option value="LA">Lao People&#39;s Democratic Republic</option>
+					<option value="LB">Lebanon</option>
+					<option value="LC">Saint Lucia</option>
+					<option value="LI">Liechtenstein</option>
+					<option value="LK">Sri Lanka</option>
+					<option value="LR">Liberia</option>
+					<option value="LS">Lesotho</option>
+					<option value="LT">Lithuania</option>
+					<option value="LU">Luxembourg</option>
+					<option value="LV">Latvia</option>
+					<option value="LY">Libyan Arab Jamahiriya</option>
+					<option value="MA">Morocco</option>
+					<option value="MC">Monaco</option>
+					<option value="MD">Moldova, Republic of</option>
+					<option value="ME">Montenegro</option>
+					<option value="MF">saint martin</option>
+					<option value="MG">Madagascar</option>
+					<option value="MH">Marshall Islands</option>
+					<option value="MK">Macedonia</option>
+					<option value="ML">Mali</option>
+					<option value="MM">Myanmar</option>
+					<option value="MN">Mongolia</option>
+					<option value="MO">Macau</option>
+					<option value="MP">Northern Mariana Islands</option>
+					<option value="MQ">Martinique</option>
+					<option value="MR">Mauritania</option>
+					<option value="MS">Montserrat</option>
+					<option value="MT">Malta</option>
+					<option value="MU">Mauritius</option>
+					<option value="MV">Maldives</option>
+					<option value="MW">Malawi</option>
+					<option value="MX">Mexico</option>
+					<option value="MY">Malaysia</option>
+					<option value="MZ">Mozambique</option>
+					<option value="NA">Namibia</option>
+					<option value="NC">New Caledonia</option>
+					<option value="NE">Niger</option>
+					<option value="NF">Norfolk Island</option>
+					<option value="NG">Nigeria</option>
+					<option value="NI">Nicaragua</option>
+					<option value="NL">Netherlands</option>
+					<option value="NO">Norway</option>
+					<option value="NP">Nepal</option>
+					<option value="NR">Nauru</option>
+					<option value="NU">Niue</option>
+					<option value="NZ">New Zealand</option>
+					<option value="OM">Oman</option>
+					<option value="PA">Panama</option>
+					<option value="PE">Peru</option>
+					<option value="PF">French Polynesia</option>
+					<option value="PG">Papua New Guinea</option>
+					<option value="PH">Philippines</option>
+					<option value="PK">Pakistan</option>
+					<option value="PL">Poland</option>
+					<option value="PM">Saint Pierre and Miquelon</option>
+					<option value="PN">pitcairn</option>
+					<option value="PR">Puerto Rico</option>
+					<option value="PS">Palestinian Territory, Occupied</option>
+					<option value="PT">Portugal</option>
+					<option value="PW">Palau</option>
+					<option value="PY">Paraguay</option>
+					<option value="QA">Qatar</option>
+					<option value="RE">Reunion</option>
+					<option value="RO">Romania</option>
+					<option value="RS">Serbia</option>
+					<option value="RU">Russian Federation</option>
+					<option value="RW">Rwanda</option>
+					<option value="SA">Saudi Arabia</option>
+					<option value="SB">Solomon Islands</option>
+					<option value="SC">Seychelles</option>
+					<option value="SD">Sudan</option>
+					<option value="SE">Sweden</option>
+					<option value="SG">Singapore</option>
+					<option value="SH">st. helena</option>
+					<option value="SI">Slovenia</option>
+					<option value="SJ">svalbard and jan mayen islands</option>
+					<option value="SK">Slovakia</option>
+					<option value="SL">Sierra Leone</option>
+					<option value="SM">San Marino</option>
+					<option value="SN">Senegal</option>
+					<option value="SO">Somalia</option>
+					<option value="SR">Suriname</option>
+					<option value="SS">south sudan</option>
+					<option value="ST">Sao Tome and Principe</option>
+					<option value="SV">El Salvador</option>
+					<option value="SX">sint maarten</option>
+					<option value="SY">Syrian Arab Republic</option>
+					<option value="SZ">Swaziland</option>
+					<option value="TC">Turks and Caicos Islands</option>
+					<option value="TD">Chad</option>
+					<option value="TF">french southern territories</option>
+					<option value="TG">Togo</option>
+					<option value="TH">Thailand</option>
+					<option value="TJ">Tajikistan</option>
+					<option value="TK">Tokelau</option>
+					<option value="TL">timor-leste</option>
+					<option value="TM">Turkmenistan</option>
+					<option value="TN">Tunisia</option>
+					<option value="TO">Tonga</option>
+					<option value="TR">Turkey</option>
+					<option value="TT">Trinidad and Tobago</option>
+					<option value="TV">Tuvalu</option>
+					<option value="TW">Taiwan</option>
+					<option value="TZ">Tanzania, United Republic of</option>
+					<option value="UA">Ukraine</option>
+					<option value="UG">Uganda</option>
+					<option value="UM">United States Minor Outlying Islands</option>
+					<option selected="selected" value="US">United States</option>
+					<option value="UY">Uruguay</option>
+					<option value="UZ">Uzbekistan</option>
+					<option value="VA">Holy See (Vatican City State)</option>
+					<option value="VC">Saint Vincent and the Grenadines</option>
+					<option value="VE">Venezuela</option>
+					<option value="VG">Virgin Islands, British</option>
+					<option value="VI">Virgin Islands, U.S.</option>
+					<option value="VN">Vietnam</option>
+					<option value="VU">Vanuatu</option>
+					<option value="WF">Wallis and Futuna</option>
+					<option value="WS">Samoa</option>
+					<option value="YE">Yemen</option>
+					<option value="YT">Mayotte</option>
+					<option value="ZA">South Africa</option>
+					<option value="ZM">Zambia</option>
+					<option value="ZW">Zimbabwe</option>
+				</select>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<label>Corporate Website</label> <span class="r">*</span>
+			</td>
+			<td>
+			<input name="website" type="text" maxlength="100" id="website" style="width:170px;" />
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<label>Who referred you? (Affiliate ID)</label>
+			</td>
+			<td>
+			<input name="referral_affiliate_id" type="text" maxlength="50" id="referral_affiliate_id" style="width:170px;"/>
+			<td>
+			</tr>
+			</table>
+			
+			
+			
+			
+			<h2 style="display:none;">Marketing Information</h2>
+					<table class="tin" style="display:none;">
+						<tr>
+							<td style="width:120px;"><label>Payment Model</label></td>
+							<td><select name="price_format_ids" id="price_format_ids">
+	<option selected="selected" value="1">CPA</option>
+	<option value="2">CPC</option>
+	<option value="3">CPM</option>
+	<option value="4">Fixed</option>
+	<option value="5">RevShare</option>
+
+</select></td>
+						</tr>
+						<tr>
+							<td><label>Primary Category</label></td>
+							<td><select name="primary_vertical_category" id="primary_vertical_category">
+	<option selected="selected" value="1">BizOp</option>
+	<option value="2">Education</option>
+	<option value="3">Financial</option>
+	<option value="4">Free Giveaways</option>
+	<option value="5">Health and Beauty</option>
+	<option value="6">Retail</option>
+	<option value="7">Social Networking</option>
+	<option value="8">Online Services</option>
+
+</select></td>
+						</tr>
+						<tr>
+							<td><label>Secondary Category</label></td>
+							<td id="sec_cat"><select name="secondary_vertical_category" id="secondary_vertical_category">
+	<option selected="selected" value="1">BizOp</option>
+	<option value="2">Education</option>
+	<option value="3">Financial</option>
+	<option value="4">Free Giveaways</option>
+	<option value="5">Health and Beauty</option>
+	<option value="6">Retail</option>
+	<option value="7">Social Networking</option>
+	<option value="8">Online Services</option>
+
+</select></td>
+						</tr>
+						<tr>
+							<td><label>Comments</label></td>
+							<td><textarea name="notes" rows="2" cols="20" id="notes" style="height:71px;width:170px;">
+</textarea></td>
+</tr>
+</table>
+			
+			
+			
+			
+			
+			<h2>Contact Information</h2>
+					<table class="tin">
+						<tr>
+							<td style="width:120px;"><label>Job Title</label></td>
+							<td><input name="contact_title" type="text" maxlength="30" id="contact_title" style="width:170px;" /></td>
+						</tr>
+						<tr>
+							<td><label>First Name</label> <span class="r">*</span></td>
+							<td><input name="contact_first_name" type="text" maxlength="25" id="contact_first_name" style="width:170px;" /></td>
+						</tr>
+						<tr>
+							<td><label>Last Name</label> <span class="r">*</span></td>
+							<td><input name="contact_last_name" type="text" maxlength="25" id="contact_last_name" style="width:170px;" /></td>
+						</tr>
+						<tr>
+							<td><label>Work Phone</label> <span class="r">*</span></td>
+							<td><input name="contact_phone_work" type="text" maxlength="20" id="contact_phone_work" style="width:170px;" /></td>
+						</tr>
+						<tr>
+							<td><label>Cell Phone</label></td>
+							<td><input name="contact_phone_cell" type="text" maxlength="20" id="contact_phone_cell" style="width:170px;" /></td>
+						</tr>
+						<tr>
+							<td><label>Fax</label></td>
+							<td><input name="contact_phone_fax" type="text" maxlength="20" id="contact_phone_fax" style="width:170px;" /></td>
+						</tr>
+						<tr>
+							<td><label>Email</label> <span class="r">*</span></td>
+							<td><input name="contact_email_address" type="text" maxlength="60" id="contact_email_address" style="width:170px;" /></td>
+						</tr>
+						<tr>
+							<td><label>Password</label> <span class="r">*</span></td>
+							<td><input name="contact_password" type="password" maxlength="25" id="contact_password" style="width:170px;" /></td>
+						</tr>
+						<tr>
+							<td><label>Confirm Password</label> <span class="r">*</span></td>
+							<td><input name="contact_password_check" type="password" maxlength="25" id="contact_password_check" style="width:170px;" /></td>
+						</tr>
+						
+						<tr>
+							<td><label>IM</label></td>
+							<td>
+								<input name="contact_im_name" type="text" maxlength="28" id="contact_im_name" style="width:170px;" />
+								<select name="contact_im_service" id="contact_im_service">
+	<option selected="selected" value="AIM">AIM</option>
+	<option value="Google">Google</option>
+	<option value="MSN">MSN</option>
+	<option value="Skype">Skype</option>
+	<option value="Yahoo">Yahoo</option>
+
+</select>
+							</td>
+						</tr>
+					</table>
+					
+					
+					
+			
+			
+			
+			
+			
+			<h2>Payment Information</h2>
+			<table class="tin">
+			<tr>
+			<td style="width:120px;">
+			<label>Currency</label> <span class="r">*</span>
+			</td>
+			<td>
+			<select name="currency_id" id="currency_id" style="width:170px;">
+			<option selected="selected" value="1">US Dollar</option>
+			<option value="3">British Pound</option>
+			</select>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<label>Tax Class</label> <span class="r">*</span>
+			</td>
+			<td>
+				<select name="tax_class" id="tax_class" style="width:170px;">
+					<option value="Individual/Sole Proprietor">Individual/Sole Proprietor</option>
+					<option value="Corporation">Corporation</option>
+					<option value="Partners/LLC/LLP">Partners/LLC/LLP</option>
+					<option value="Other">Other</option>
+				</select>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<label>SSN/Tax ID</label> <span class="r">*</span>
+			</td>
+			<td>
+                <input name="ssn_tax_id" type="text" id="ssn_tax_id" style="width:170px;"/>
+            </td>
+			</tr>
+			<tr>
+			<td>
+				<label>Payment to</label> <span class="r">*</span>
+			</td>
+			<td>
+				<select name="payment_to" id="payment_to" style="width:170px;">
+					<option value="0">Company Name</option>
+					<option value="1">Main Contact</option>
+				</select>
+			</td>
+			</tr>
+			
+			<tr>
+			<td>
+				<label>Payment type</label> <span class="r">*</span>
+			</td>
+			<td>
+				<select name="payment_type_id" id="payment_type_id" style="width:170px;">
+					<option value="1">Check</option>
+					<option value="4">PayPal</option>
+				</select>
+			</td>
+			</tr>
+			
+			<tr id="paypal_email" style="display:none;">
+			<td>
+				<label>PayPal Email</label> <span class="r">*</span>
+			</td>
+			<td>
+				<input type="text" name="payment_type_info" id="payment_type_info" style="width:170px;"/>
+			</td>
+			</tr>
+			</table>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<p class="check_box">
+				<input type="checkbox" id="terms" name="terms"/>
+				<label>I agree to Terms and Conditions</label> <span class="r">*</span>
+			</p>
+			<div style="overflow:auto;height:200px;margin-top:20px;padding:0 10px;border:solid 1px #666;background-color:#e6e6e6">
+						<p align="center"><strong>TERMS AND CONDITIONS</strong></p>
+						
+						<p>The  following terms and conditions (this &quot;Agreement&quot;) is a legal  agreement between Hosting Services Inc. (&quot;Hosting Services Inc.&quot;), and  PUBLISHER. PUBLISHER and Hosting Services Inc. may also be individually referred to herein  as a &quot;Party&quot; and collectively as &quot;Parties.&quot; If there is any conflict between these Terms and  Conditions and the Insertion Order(s), the Insertion Order(s) shall control. </p>
+						<p><strong>1.) Service</strong>: PUBLISHER will  display the Advertisement and perform lead generation services described in the  attached Insertion Order. &quot;Advertisement&quot; means the advertisement,  including any copy including questions and or text ads, graphic, sound, video,  programming code and/or other content that comprises the advertisement, as well  as the websites to which an advertisement is linked if applicable.&nbsp; Hosting Services Inc. hereby grants to PUBLISHER during  the Contract Period a non-exclusive, royalty-free, worldwide right and license  by all means and in any media, whether now known or hereafter discovered, to  use, reproduce, distribute, publicly perform, publicly display and digitally  perform such Advertisement and all its constituent parts.</p>
+						<p><strong>2.) Qualified Lead  Definition (Qualified Leads):</strong> Qualified Leads are prospects who meet  Hosting Services Inc.&rsquo;s screening criteria as described in the Insertion Order and who  provide their complete contact data.&nbsp;  PUBLISHER will be paid on a delivered per lead basis defined as when a  user agrees through a pre approved opt-in method to be contacted.&nbsp; In the case of any dispute between the  parties as to the number of Qualified Leads, Hosting Services Inc.&rsquo;s numbers will control.</p>
+						<p><strong>3.) Lead Validation  Procedure:&nbsp; </strong><br>
+  						Hosting Services Inc. will verify each Qualified Lead delivered by the PUBLISHER.&nbsp; Upon receipt, all Qualified Leads will be  checked for data validity (i.e. containing valid data inputs for the fields  specified in the Insertion Order) and uniqueness of data (i.e. that the  Qualified Leads are not present in Hosting Services Inc.&rsquo;s database for the designated  Advertisement in the past 60 days).&nbsp; Hosting Services Inc.  reserves the right to send an auto-responder to all respondents re-confirming  their request for information.&nbsp;&nbsp; Any  objections from respondents (about the email, or the offer) will be raised to  the PUBLISHER.&nbsp; </p>
+						<p><strong>4.) Creative  Changes</strong>:&nbsp; Editing of Hosting Services Inc.&rsquo;s Creative is strictly  prohibited, without prior written approval from Hosting Services Inc..&nbsp; Creative includes, but is not limited to,  text ads, graphic ads, from and subject line, any copy associated with the  campaign including survey questions and answers.&nbsp; Any changes to Creative, without prior  written permission will result in the loss of payment of Leads.</p>
+						<p><strong>5.) Compliance:&nbsp; </strong>Hosting Services Inc. will  actively monitor PUBLISHER activity using a combination of its proprietary  software and third party monitoring services.&nbsp;  It is the obligation of PUBLISHER to prove to Hosting Services Inc. that they are  not committing fraud.&nbsp; Hosting Services Inc. will  hold PUBLISHER payment in &lsquo;Pending Status&rsquo; until PUBLISHER has satisfactorily  provided evidence that PUBLISHER is not defrauding the system.&nbsp; Hosting Services Inc. flags accounts that: &nbsp;Have click-through rates that are much higher  than industry averages and where solid justification is not evident; Have only  click programs generating clicks with no indication by site traffic that it can  sustain the clicks reported; Have shown fraudulent leads as determined by our  clients or Use fake redirects, automated software, and/or fraud to generate  clicks or leads.&nbsp; If PUBLISHER is unable  to prove to Hosting Services Inc. that PUBLISHER is not committing fraud, PUBLISHER will  forfeit its entire commission for all programs and PUBLISHER&rsquo;s account will be  terminated.&nbsp; Hosting Services Inc. reserves sole  judgment in determining fraud.&nbsp; </p>
+						<p><strong>6.) Advertising  Guidelines</strong>:&nbsp; PUBLISHER may, in its complete discretion,  reject, cancel or remove at any time any Advertisement from the service for any  reason without prior notice to Hosting Services Inc..&nbsp;  PUBLISHER must notify Hosting Services Inc. following the rejection, cancellation  or removal of any Advertisement from the service within 24 hours.&nbsp; </p>
+						<p><strong>7.) Term &amp;  Target Launch</strong>:  Term will be one (1) month from the target launch of the initial campaign as  noted in the Insertion Order.&nbsp; Agreement  may continue thereafter by mutual consent but may be terminated by either party  for any reason whatsoever.&nbsp; All legitimate  moneys due to PUBLISHER will be paid during the next billing cycle.&nbsp; If PUBLISHER defrauds the system, then  payment is revoked as determined solely by Hosting Services Inc..&nbsp; &nbsp;&nbsp;</p>
+						<p><strong>8.) Payment</strong>:&nbsp; PUBLISHER will invoice Hosting Services Inc. on a  monthly basis at the payout rates reflected in the Insertion Order.&nbsp; The invoice will reflect delivery of final  Qualified Lead numbers that are based upon numbers reported by Hosting Services Inc. to  PUBLISHER pursuant to the terms of this Agreement. </p>
+						<p><strong>9.) Payment Term</strong>: Hosting Services Inc. shall  make all payments to PUBLISHER within 30 days of the Invoice Date.&nbsp; All payments made to PUBLISHER do not  include, and PUBLISHER shall pay, any sales, use or similar tax associated with  such payment.&nbsp; All past due amounts shall  accrue interest at the rate of one and one-half percent (1.5%) per month or the  maximum rate allowed by law, whichever is greater.&nbsp; Parties shall keep, maintain and preserve,  for the term of this Agreement and for one (1) year thereafter, accurate  records relating to amounts due hereunder (the &ldquo;<u>Relevant Records</u>&rdquo;).&nbsp; Either party shall have a right at least once  per calendar year to audit the Relevant Records of the other party for the  purpose of verifying fulfillment of party&rsquo;s payment obligations pursuant to  this Agreement.&nbsp;&nbsp; Each audit will be  conducted at a place agreed to by the parties, during the normal business  hours, with at least ten (10) business days prior written notice to party to be  audited.&nbsp;&nbsp; Auditing party shall pay the  fees and expenses of the audit, unless the audit reveals a payment discrepancy  of more than ten percent (10%) of all payments due in any consecutive six (6)  month period, in which case audited party shall pay the reasonable fees and  expenses of the audit, and shall immediately pay to auditing party all amounts  found to be due.</p>
+						<p><strong>10. Hosting Services Inc. Representations and Warranties. </strong>The  execution, delivery, and performance of this Agreement by Hosting Services Inc. has been  duly approved by its board of directors or managing partners/members, and no  further corporate action is necessary on the part of Hosting Services Inc. to consummate  the transactions contemplated by this Agreement.</p>
+						<p><strong>11.)</strong> <strong>PUBLISHER</strong> <strong>Representations and Warranties:&nbsp; </strong>Publisher represents and warrants that:  (1) the recipients of all email addresses used by PUBLISHER in connection with  this Agreement have manifested affirmative consent to receive commercial emails  from PUBLISHER and none of the email addresses were obtained through email  harvesting or dictionary attacks; (2) PUBLISHER will not fraudulently add leads  or clicks or inflate leads or clicks by fraudulent traffic generation (as  determined solely by Hosting Services Inc., such as pre-population of forms or mechanisms  not approved by Hosting Services Inc.); (3) PUBLISHER will not attempt in any way to  alter, modify, eliminate, conceal, or otherwise render inoperable or  ineffective the Site tags, source codes, links, pixels, modules or other data  provided by or obtained from Hosting Services Inc. that allows Hosting Services Inc. to measure ad  performance and provide its services and (4) all of PUBLISHER&rsquo;s efforts  associated with this Agreement comply with the laws of the United States, and  any other laws of any other jurisdictions which are applicable to PUBLISHER.  PUBLISHER will not engage in or promote any illegal activities of any kind in  association with this Agreement.</p>
+						<p><strong>12.) Other  Obligations</strong>:  PUBLISHER shall:</p>
+						<ol start="1" type="A">
+							<li>NOT PROVIDE Incentivized traffic.&nbsp; This includes but is not limited to any       spoofing, redirecting or trafficking from adult related websites in an       effort to gain traffic or websites that are point, lottery, coupon or       rewards based and encourage users to click on Advertisements or use       Advertisements to generate revenue for&nbsp;       users to win points, get rewards, or other any other       incentive.&nbsp; </li>
+							<li>NOT PROVIDE leads generated from content, email or websites that are not subject       matter related to the category of the Advertisement represented.&nbsp; Such websites must be content-based (not       a list of links or advertisements), be written in English, receive a       minimum of unique page views per month, have a top-level name and must not       infringe on any personal, intellectual property or copyrights.&nbsp; This can be waived only by SPECIFICALLY       providing the name of the proposed website to Hosting Services Inc.. </li>
+							<li>Be able to provide the name of the Website where the lead was generated.&nbsp; This information is only delivered to Hosting Services Inc.       upon request, but MUST be made available in case there is a dispute or       problem with the lead.</li>
+							<li>NOT PROVIDE inappropriate       content, which includes, but is not limited to, content that (i) promotes       the use of alcohol, tobacco or illegal substances, nudity, sex,       pornography adult-oriented content such as phone sex or escort services,       expletives or inappropriate language, (ii) promotes violence or the use of       illegal substances or activities such as how to build a bomb,       counterfeiting money and software pirating (iii) promotes illegal or unethical       activity, racism, hate, &quot;spam&quot;, mail fraud, gambling,       sweepstakes, pyramid schemes, or illegal advice (iv) is otherwise       prohibited by Federal or state law; and/or (v) will bring Hosting Services Inc.       and/or its associated Advertisers negative publicity.</li>
+							<li>At no time, engage in, disseminate, promote or otherwise distribute any Advertisement       through the use of contextual media, specifically downloadable software       (also called adware, pop-up/pop-under technologies, plug-ins, and other       names as applicable).</li>
+							<li>Email Campaigns.&nbsp; PUBLISHER further represents and       warrants that with respect to email campaigns transmitted by PUBLISHER for       Hosting Services Inc., PUBLISHER shall at all times only use the Hosting Services Inc. email       creative provided by Hosting Services Inc., maintain strict compliance with the       Controlling the Assault on Non-solicited Pornography and Marketing Act of       2003 (CAN-SPAM) and any amendments and modifications thereto.</li>
+						</ol>
+						<p><strong>13.) Confidentiality</strong>: &nbsp;The terms of this Agreement are confidential  and shall not be disclosed to any third party except where required by  law.&nbsp; All information submitted by  end-user customers pursuant to this Agreement is proprietary to and owned by  Hosting Services Inc.. Such customer information is confidential and may not be disclosed  by Hosting Services Inc. or PUBLISHER. In addition, PUBLISHER acknowledges that all  non-public information, data and reports received from Hosting Services Inc. hereunder or  as part of the services hereunder is proprietary to and owned by  Hosting Services Inc..&nbsp; (&ldquo;Confidential  Information&rdquo;).&nbsp; PUBLISHER agrees not to  disclose the terms of this Agreement, including the CPA value, to any third  party without the express written consent of Hosting Services Inc., and that such  constitutes Confidential Information.&nbsp; All Confidential Information is or  may be protected by copyright, trademark, trade secret and other intellectual property  law, as appropriate. PUBLISHER agrees not to reproduce, disseminate, sell,  distribute or commercially exploit any proprietary or Confidential Information  in any manner. These non-disclosure obligations shall survive the termination  of this Agreement for a period of five (5) years.&nbsp; This section does not bind Hosting Services Inc. or  PUBLISHER in the event such information is required to be disclosed by  operation of law. If a request is made of PUBLISHER to disclose such information,  PUBLISHER must immediately inform Hosting Services Inc. via written notice sufficiently  promptly to allow Hosting Services Inc. to seek a Protective Order prior to the time  commanded to produce or disclose such Confidential Information, and PUBLISHER  agrees to cooperate in whatever way Hosting Services Inc. requests to attempt to protect  that information from disclosure by operation of law.&nbsp; Subject to prior approval by PUBLISHER, Hosting Services Inc.  may publicly announce its contractual relationship with PUBLISHER, which  includes being on a listing of Hosting Services Inc. publishers in general corporate  materials and in industry standard press releases.</p>
+						<p><strong>14. DISCLAIMER OF WARRANTIES</strong>: Hosting Services Inc. PROVIDES ITS SITES AND THE SITES OF ITS  AFFILIATES AND PARTNERS, AND ALL ITS SERVICES AND THE SERVICES OF ITS AFFILIATES  AND PARTNERS, AS PERFORMED HEREUNDER, ON AN &quot;AS IS,&quot; &ldquo;WHERE IS&rdquo; AND  &quot;AS AVAILABLE&quot; BASIS. Hosting Services Inc. DISCLAIMS ALL WARRANTIES OF ANY  KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED  WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE AND IMPLIED  WARRANTIES ARISING FROM COURSE OF DEALING OR COURSE OF PERFORMANCE. </p>
+						<p><strong>15. LIMITATIONS OF  LIABILITY</strong>:  IN NO EVENT SHALL Hosting Services Inc. BE LIABLE FOR ANY SPECIAL, INDIRECT, INCIDENTAL OR  CONSEQUENTIAL DAMAGES (INCLUDING, WITHOUT LIMITATION, FOR BREACH OF CONTRACT,  WARRANTY, NEGLIGENCE OR STRICT LIABILITY), OR FOR INTERRUPTED COMMUNICATIONS,  LOSS OF USE, LOST BUSINESS, LOST DATA OR LOST PROFITS, ARISING OUT OF OR IN  CONNECTION WITH THIS AGREEMENT. UNDER NO CIRCUMSTANCES SHALL Hosting Services Inc. BE  LIABLE TO PUBLISHER OR ANY THIRD PARTIES FOR AN AMOUNT GREATER THAN THE AMOUNTS  PAID BY Hosting Services Inc. TO PUBLISHER DURING THE PRIOR THREE MONTHS. </p>
+						<p><strong>16.) Indemnification:&nbsp; </strong>Each party agrees  to indemnify, defend and hold harmless the other party and its employees,  agents, officers and directors, against any and all claims, causes of actions,  judgments, demands, damages, losses or liabilities, including costs and  expenses (including reasonable attorneys fees and costs of suit), arising out  of or relating to (a) any claim based upon&nbsp;  infringement of copyright, trademark, patent, or trade secret or other  intellectual property right of any third party; (b) any claim, representation,  or statement made in the Advertisement; (c) any breach of any representation or  warranty contained in this Agreement.</p>
+						<p><strong>17. Dispute  Resolution:</strong>&nbsp; If any dispute arises under this Agreement,  the Parties agree to first try to resolve the dispute with the help of a  mutually agreed upon mediator in the following location:&nbsp; State of California,  Los Angeles County.&nbsp;  Any costs and fees other than attorneys&rsquo; fees associated with the  mediation shall be shared equally by the parties.&nbsp; If it proves impossible to arrive at a  mutually satisfactory solution through mediation, the Parties agree to submit  the dispute to binding arbitration in the following location:&nbsp; State of California,  Los Angeles County. The Parties agree that the  binding arbitration will be conducted under the rules of the American  Arbitration Association.&nbsp; Judgment upon  the award rendered by the arbitrator may be entered in any court with proper  jurisdiction.&nbsp; If any litigation or  arbitration is absolutely necessary to enforce this Agreement or the terms  thereof, the prevailing Party shall be entitled to reimbursement by the other  Party for reasonable attorneys&rsquo; fees, costs and expenses.&nbsp; This Agreement will be governed by the laws  of the State of California.</p>
+						<p><strong>18. No Assignment:</strong> Neither Party  shall have the right to assign or otherwise transfer its rights and obligations  under this Agreement except with the prior written consent of the other Party;  provided, however, that a successor in interest by merger, by operation of law,  assignment, purchase or otherwise of all or substantially all the business of a  Party may acquire its rights and obligations hereunder.&nbsp; Any prohibited assignment shall be null and  void.</p>
+						<p><strong>19. Independent  Contractor:&nbsp; </strong>Each party is an  independent contractor.&nbsp; Except as set  forth in this Agreement, neither party is authorized or empowered to obligate  the other or incur any costs on behalf of the other without the party&rsquo;s prior  written consent.<strong>&nbsp; </strong></p>
+						<p><strong>20. Severability:</strong> If any term,  provision, covenant, or condition of this Agreement is held by a court of  competent jurisdiction to be invalid or unenforceable, the remainder of the  Agreement shall remain in full force and effect and shall in no way be affected  or invalidated.</p>
+						<p><strong>21. Entire  Agreement; Modification:</strong>&nbsp; This  constitutes the entire agreement between the parties and supersedes any prior  or inconsistent agreements, negotiations, representations and promises, written  or oral, regarding the subject matter. No modification, course of conduct,  amendment, supplement to or waiver of this Agreement or any provisions hereof  shall be binding upon the parties unless made in writing and duly signed by  both parties. </p>
+						<p><strong>22. Agreement in  Counterparts:</strong> This agreement may be signed by Hosting Services Inc. and PUBLISHER in counterparts, and  facsimile signatures shall have the same force and effect as an original  signature.</p>
+						
+					</div>
+					<br/>
+					<div id="captcha" style="display:none;">
+						<script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k=6Le66cQSAAAAAKDHwkwtaO76KHLWtd-dSCzfgEbf"></script>
+						<noscript>
+							<iframe src="https://www.google.com/recaptcha/api/noscript?k=6Le66cQSAAAAAKDHwkwtaO76KHLWtd-dSCzfgEbf" height="300" width="500" frameborder="0"></iframe><br />
+							<textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+							<input type="hidden" name="recaptcha_response_field" value="manual_challenge" />
+						</noscript>
+					</div>
+					<div style="margin-top:20px">
+						<input type="submit" name="submit" class="button" value="Submit" id="submit" />
+						<br />
+						<span class="r">*</span> Denotes required field
+					</div>
+			
+		</form>
+	</div>
+	<!--content form End-->
+
+</div>
+</div>
+</div>
+</body>
+</html>

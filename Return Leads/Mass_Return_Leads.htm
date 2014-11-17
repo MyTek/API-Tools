@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.min.js"></script>
+		<script type="text/javascript" language="javascript">
+			$(function(){
+				var lead_ids = $('#lead_ids');
+				var buyer_contract_id = $('#buyer_contract_id');
+				var reason = $('#reason');
+
+				$.ajax({
+					type: 'POST',
+					url: '/buyers/api/1/leads.asmx/GetReturnReasons',
+					contentType: 'application/json',
+					dataType: 'json',
+					success: function (data) {
+						$.each(data.d.return_reasons, function(index, value){
+							reason.append('<option value="' + value.reason_id + '">' + value.reason_name + '</option>');
+						});
+					}
+				});
+
+				$('#button').click(function(){
+					var lead_ids_array = lead_ids.val().replace(/ /g, "").replace(/\n/g, "\,");
+					lead_ids_array = lead_ids_array.split(",");
+
+					for (var index = 0; index < lead_ids_array.length; index++)
+					{
+						$.ajax({
+							type: 'GET',
+							url: '/buyers/api/1/leads.asmx/Return?lead_id=' + lead_ids_array[index] + '&buyer_contract_id=' + buyer_contract_id.val() + '&return_reason_id=' + reason.val(),
+							dataType: 'xml',
+							async: false,
+							success: function (data) {
+								$('#results').append(lead_ids_array[index] + ' - ').append(data.firstChild).append('<br>');
+							}
+						});
+					}
+
+					alert("Done");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div>Lead IDs (separated by new lines)</div>
+
+		<textarea id="lead_ids" rows="5"></textarea>
+		<div>Buyer Contract ID</div>
+		<input id="buyer_contract_id" />
+		<div>Return Reason</div>
+		<select id="reason" style="width: 300px;"><option value=""></option></select>
+
+		<input id="button" type="button" value="Submit Returns" />
+		<div id="results"><br /></div>
+	</body>
+</html>

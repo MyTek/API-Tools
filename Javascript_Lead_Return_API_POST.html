@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+<script type="text/javascript" language="javascript">
+function returnreasons(){
+var domain = document.getElementById("domain").value;
+var link = "http://" + domain + "/buyers/api/1/leads.asmx/GetReturnReasons";
+var linkid = document.getElementById("linkid").setAttribute("href",link);
+}
+function updateArea() {
+
+var lid = document.getElementById("lid").value;
+var bid = document.getElementById("bid").value;
+var reason = document.getElementById("reason").value;
+var domain = document.getElementById("domain").value;
+lid = lid.replace(/ /g, "").replace(/\n/g, "\,");
+var leads = new Array();
+leads = lid.split(",");
+var i=0;
+
+while (leads[i])
+{
+var http = new XMLHttpRequest();
+var url = "http://" + domain + "/buyers/api/1/leads.asmx/Return";
+var params = "lead_id=" + leads[i] + "&buyer_contract_id=" + bid + "&return_reason_id=" + reason;//30 is "other"
+http.open("POST", url, true);
+//Send the proper header information along with the request
+http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+http.setRequestHeader("Content-length", params.length);
+http.setRequestHeader("Connection", "close");
+http.onreadystatechange = function() {//Call a function when the state changes.
+	if(http.readyState == 4 && http.status == 200) {
+		alert(http.responseText);
+	}
+}
+http.send(params);
+i++;
+}
+alert("Done.");
+}
+</script>
+</head>
+<body onload="returnreasons()">
+<form type="input">
+<div>Lead id's (spaced by new lines)</div>
+<textarea id="lid"></textarea>
+<div>Buyer Contract id</div>
+<input id="bid">
+<div>Return Reason (put in domain first - <a href="#" id="linkid">LINK</a>)</div>
+<input id="reason">
+<div>Login Domain</div>
+<input id="domain" size="40" onkeyup="returnreasons()">
+<input type="button" value="Click to Update" onclick='updateArea()'>
+</form>
+</body>
+</html>

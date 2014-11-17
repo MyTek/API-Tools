@@ -1,0 +1,13 @@
+http://demo.cakemarketing.com/custom/ZiffCSVServerPosts.htm
+
+
+ckm_campaign_id,ckm_key,ckm_subid,first_name,last_name,address1,city,state,postal_code,email_address,phone,ip_address,country,opt_in,company,job_title,number_of_employees,lead_create_date,asset_title,Asset_URL,call_center
+5622,jTZaSVhoRikiqT3LeKSQ,subid_1,Awesome,Bill,from,dawsonville,CA,92663,Bill@gmail.com,5555555555,192.168.1.1,US,YES,Broke,NoJoke,1,1/1/2012,Something,http://www.google.com,NO
+
+
+<result>
+<code>0</code>
+<msg>success</msg>
+<leadid>2C55F6FD</leadid>
+<price>1.00</price>
+</result>

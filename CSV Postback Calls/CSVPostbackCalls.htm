@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.5.min.js"></script>
+		<script type="text/javascript" src="table2CSV.js" ></script> 
+		<script type="text/javascript" src="csv2table.js?v=1"></script>
+		<script type="text/javascript" language="javascript">
+$(function(){
+$("#conversions").val('');
+$("#uploadbutton").val('');
+$("#posturl").val('');
+if ( ($.browser.mozilla) && ($.browser.version >= 13) ){
+$("#browse").show()
+};
+$("#uploadbutton").change(function() {
+    var reader = new FileReader();
+    reader.onloadend = function() {
+        $("#conversions").val(reader.result);
+    }
+    reader.readAsText(this.files[0]);
+});
+$('#button').click(function(){
+	csvarray = $.csvIn.toArray($("#conversions").val());
+	var tbody = $('#results tbody');
+	var answer = confirm("Are you sure? (Cake is not responsible for information posted to your system using this utility)");
+	if(answer){
+	for (var index = 1; index < csvarray.length; index++){
+		var emailadd;
+		var campaignid;
+		var queryparams = {};
+		for(var query = 0; query < csvarray[index].length;query++){
+			if(!queryparams[index-1]){
+				queryparams[index-1] = csvarray[0][query] + "=" + encodeURIComponent(csvarray[index][query]);
+			}
+			else{
+			queryparams[index-1] += "&" + csvarray[0][query] + "=" + encodeURIComponent(csvarray[index][query]);
+			};
+		};
+	$.ajax({
+		type: 'GET',
+		url: 'http://' + $("#posturl").val() + '/p.ashx?' + queryparams[index-1],
+		datatype: 'xml',
+		async: false
+		});
+	}
+	alert("Done");
+	};
+});
+$('#examplebutton').click(function() {
+  var example = $('#example').text();  
+  window.open('data:text/csv,' + encodeURIComponent(example));
+});
+});
+		</script>
+	</head>
+	<body width="100%">
+	<u>Insert Tracking Domain</u>
+	</br>
+	</br>
+	<div style="height:20px;width:100%">
+	http://<input id="posturl" placeholder="tracking.domain.com" type="text" size="50"/>/p.ashx
+	</div>
+	</br>
+	</br>
+	<div id="browse" style="display:none;">
+	<u>Please specify a CSV or text file in the form of a CSV:</u></br>
+	</br>
+<input type="file" id="uploadbutton" name="datafile" size="40" autocomplete="off"></br></br>
+</div>
+	<div style="display:block;">
+		<div><u>CSV Text</u></div>
+		<div>This will post Postback URLs using the CSV column headers as parameters and the matching rows as values for those parameters.  The column headers should be "r" and "o" and subsequent rows should match "r" for conversion request id and "o" for offer id  One post per row starting on the second line.  Please copy the raw text from your CSV and paste it in here.  If you have Firefox Version 13 or higher, you will have the option of uploading the file directly.</div>
+		<div id='example' style="display:none">r,o
+123456,12
+123457,12
+
+This column is for the request ids,This column is for the offer ids</div>
+		<input id='examplebutton' type='button' value="Example">
+		</br>
+		<textarea id="conversions" rows="20" cols="100" value=""></textarea>
+		<input id="button" type="button" value="Submit Leads" />
+	</div>
+	<div id="results" style="float:left;width:100%;margin-top:20px;">
+	<div style="padding-bottom:5px"><input id='export' style="display:none;" type='button' value="Export"></div>
+	</div>
+	</body>
+</html>
